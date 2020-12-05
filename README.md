@@ -28,6 +28,21 @@
 > ##### • 펭귄이 오브젝트와 충돌했을때, 코인을 얻었을 때 등의 작동에 대한 구현에 신경을 많이 썼으며 장애물 오브젝트를 적절히 배치하여 게임의 난이도를 적절히 조절하고 플레이어가 게임에 흥미를 느낄 수 있게끔 만들려고 노력함
 > ##### • 복셀로 오브젝트를 제작하는 것과 이를 유니티로 import하는 과정이 생각보다 까다로웠으며, 맵을 제작할 때 Terrain을 사용하려 했지만 CPU 과부하로 부득이하게 사용하지 못해서 넓은 맵에 실제로 오브젝트를 배치하는 일이 제일 힘들었습니다.
 
+# < 작업 설명 >
+> ###### • PenguinScript.cs : 펭귄의 움직임 계산, 충돌 시 작용
+	forward = new Vector3(0.0f, 0.0f, Time.deltaTime * speed);
+	movement = Vector3.zero;
+	movement.x = Input.acceleration.x;
+    if (movement.sqrMagnitude > 1)
+        movement.Normalize();
+
+    movement *= Time.deltaTime;
+    if ((transform.position + movement * 20.0f + forward).x < 4.5f && (transform.position + movement * 20.0f + forward).x > -4.5f)
+        transform.Translate(movement * 20.0f + forward);
+    else
+        transform.Translate(forward);
+    speed += Time.deltaTime * 1 / 10;
+		
 ---------------------
 # < 동영상 링크 >
 > ###### https://youtu.be/p8oDsIHTSYw
