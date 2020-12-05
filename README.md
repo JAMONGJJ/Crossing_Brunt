@@ -35,8 +35,9 @@
 	movement.x = Input.acceleration.x;
     if (movement.sqrMagnitude > 1)
         movement.Normalize();
-
     movement *= Time.deltaTime;
+    
+    // 펭귄의 x값의 절대값의 최대값을 4.5로 제한(맵 밖으로 안 나가게 하기 위해)
     if ((transform.position + movement * 20.0f + forward).x < 4.5f && (transform.position + movement * 20.0f + forward).x > -4.5f)
         transform.Translate(movement * 20.0f + forward);
     else
